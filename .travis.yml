@@ -2,3 +2,13 @@ language: java
 jdk: openjdk11
 before_install: cd DakoChatApplication
 dist: trusty 
+addons:
+  sonarcloud:
+    organization: $sonarcloud_organization
+    token:
+      secure: $sonarcloud_token
+script:
+  - ant clean
+  - ant test
+  - ls -lisahFR
+  - sonar-scanner -X
